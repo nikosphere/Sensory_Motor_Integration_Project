@@ -1,23 +1,24 @@
 %%
-%initialize colors
-Grey = [0.5 0.5 0.5];
-Red = [1 0 0];
-Blue = [ 0 1 0];
-Green = [ 0 0 1];
-
-%%
 %prompt details of simulation
 prompt = {'Enter Dot Color (Grey, Red, Green, Blue):','Enter Dot Size:','Enter amplitude constant:','Enter Frequency of Oscillation'};
 dlgtitle = 'MovingDotDemo';
 answer = inputdlg(prompt,dlgtitle);
 screenXpixels = 1920;
 screenYpixels = 1080;
-dotColor = str2num(answer{1,1});
+dotColor = (answer{1,1});
 dotSizePix = str2num(answer{2,1}); 
 amplitude = screenYpixels * str2num(answer{3,1});
 frequency = str2num(answer{4,1});
 
-
+if strcmp(dotColor,'Grey')
+    dotColor = [0.5 0.5 0.5];
+    elseif strcmp(dotColor, 'Red')
+        dotColor = [1 0 0];
+        elseif strcmp(dotColor,'Blue')
+            dotColor = [ 0 1 0];
+                elseif strcmp(dotColor,'Green')
+                    dotColor = [ 0 0 1];  
+end
 %%
 sca;
 PsychDefaultSetup(2); 

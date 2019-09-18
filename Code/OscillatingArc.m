@@ -1,9 +1,6 @@
-%%
-%initialize colors
-Grey = [0.5 0.5 0.5];
-Red = [1 0 0];
-Blue = [ 0 1 0];
-Green = [ 0 0 1];
+%% clear workspace
+clear all;
+
 %%
 %prompt details of simulation
 screenXpixels = 1920;
@@ -12,14 +9,25 @@ baseRect = [0 0 200 200];
 prompt = {'Enter Arc Color (Grey, Red, Green, Blue):','Enter Arc Radius:','Enter Arc Angle','Enter amplitude constant:','Enter Frequency of Oscillation'};
 dlgtitle = 'OscillatingDotDemo';
 answer = inputdlg(prompt,dlgtitle);
-arcColor = str2num(answer{1,1});
+arcColor = (answer{1,1});
 arcRadius = str2num(answer{2,1}); %put down 50-100 
 arcAngle = str2num(answer{3,1}); %put down 60
 amplitude = screenXpixels * str2num(answer{4,1}); %recommended 0.25
 frequency = str2num(answer{5,1}); %recommended 0.2-0.5
+
+if strcmp(arcColor,'Grey')
+    arcColor = [0.5 0.5 0.5];
+    elseif strcmp(arcColor, 'Red')
+        arcColor = [1 0 0];
+        elseif strcmp(arcColor,'Blue')
+            arcColor = [ 0 1 0];
+                elseif strcmp(arcColor,'Green')
+                    arcColor = [ 0 0 1];  
+end
+    
 %%
 %sca;
-% Here we call some default settings for setting up Psychtoolbox
+% Here we call some default  settings for setting up Psychtoolbox
 PsychDefaultSetup(2);
 
 % Get the screen numbers
@@ -77,7 +85,7 @@ while ~KbCheck
     
     % Center  the rectangle on the centre of the screen
     %gridXpos = 0.25*screenXpixels; %these th ings center the dot in the middle
-    %gridYpos = 0.25*screenYpixels;
+    %gridYpos = 0.25*screenYpixemls;
     centeredArc = CenterRectOnPointd(baseRect, arcXpos, arcYpos );
 
     % Draw the arc to the screen
